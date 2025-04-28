@@ -1,0 +1,14 @@
+D:\Portfolio\CSharpDev\miniERPModule\miniERPModule\bin\Debug\net8.0\miniERPModule.exe
+D:\Portfolio\CSharpDev\miniERPModule\miniERPModule\bin\Debug\net8.0\miniERPModule.deps.json
+D:\Portfolio\CSharpDev\miniERPModule\miniERPModule\bin\Debug\net8.0\miniERPModule.runtimeconfig.json
+D:\Portfolio\CSharpDev\miniERPModule\miniERPModule\bin\Debug\net8.0\miniERPModule.dll
+D:\Portfolio\CSharpDev\miniERPModule\miniERPModule\bin\Debug\net8.0\miniERPModule.pdb
+D:\Portfolio\CSharpDev\miniERPModule\miniERPModule\obj\Debug\net8.0\miniERPModule.GeneratedMSBuildEditorConfig.editorconfig
+D:\Portfolio\CSharpDev\miniERPModule\miniERPModule\obj\Debug\net8.0\miniERPModule.AssemblyInfoInputs.cache
+D:\Portfolio\CSharpDev\miniERPModule\miniERPModule\obj\Debug\net8.0\miniERPModule.AssemblyInfo.cs
+D:\Portfolio\CSharpDev\miniERPModule\miniERPModule\obj\Debug\net8.0\miniERPModule.csproj.CoreCompileInputs.cache
+D:\Portfolio\CSharpDev\miniERPModule\miniERPModule\obj\Debug\net8.0\miniERPModule.dll
+D:\Portfolio\CSharpDev\miniERPModule\miniERPModule\obj\Debug\net8.0\refint\miniERPModule.dll
+D:\Portfolio\CSharpDev\miniERPModule\miniERPModule\obj\Debug\net8.0\miniERPModule.pdb
+D:\Portfolio\CSharpDev\miniERPModule\miniERPModule\obj\Debug\net8.0\miniERPModule.genruntimeconfig.cache
+D:\Portfolio\CSharpDev\miniERPModule\miniERPModule\obj\Debug\net8.0\ref\miniERPModule.dll
