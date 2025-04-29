@@ -10,9 +10,9 @@ namespace miniERPModule
             private int customerId;
             private string title;
             private string status;
-            private ArrayList products = new ArrayList();
+            private List<Product> products = new List<Product>();
 
-            public Order(string data, ArrayList products)
+            public Order(string data, List<Product> products)
             {
                 string[] tmp = data.Split(';');
                 this.id = Convert.ToInt32(tmp[0]);
@@ -31,7 +31,7 @@ namespace miniERPModule
 
             public string Status{ get { return status; } set { status = value; } }
 
-            public ArrayList Products{ get { return products; } set { products = value; } }
+            //public ArrayList Products{ get { return products; } set { products = value; } }
             #endregion
 
             public void addProd(Product product) { this.products.Add(product); }

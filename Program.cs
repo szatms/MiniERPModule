@@ -17,7 +17,7 @@
             #region Demo
             Menu menu = new Menu();
             int choice = 0;
-            ArrayList orders = new ArrayList();
+            var orders = new List<Order>();
 
             while (true)
             {
@@ -41,9 +41,10 @@
                         System.Environment.Exit(0);
                         break;
                 }
+                Console.WriteLine("\nAction completed succesfully. Press any key to continue!");
+                Console.ReadKey();
                 Console.Clear();
             }
-            
             #endregion
 
         }
