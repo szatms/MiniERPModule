@@ -73,14 +73,55 @@
             public void edit(List<Order> orders)
             {
                 int choice = 0;
+                Console.WriteLine("Select an order to edit by order ID: ");
+                int idToEdit = Convert.ToInt32(Console.ReadLine());
+
+                for (int i = 0; i < orders.Count; i++)
+                {
+                    if (idToEdit == orders[i].Id)
+                    {
+                        idToEdit = orders[i].Id;
+                        break;
+                    }
+                }
+
                 while (true) {
                     Console.WriteLine("Select options to edit:");
-                    Console.WriteLine("\t#1.) Edit Order Properties\n\t#2.) Add products to Order\n\t#3.) Remove products from order\n\t#4.) Exit");
+                    Console.WriteLine("\t#1.) Edit Order Properties\n\t#2.) Add products to Order\n\t#3.) Remove products from order\n\t#4.) Return");
                     choice = Convert.ToInt32(Console.ReadLine());
                     switch (choice){
                         case 1:
-                            Console.WriteLine("Select the attribute to edit:");
-                            Console.WriteLine("\n\t#1.) Order ID\n\t#2.) Customer ID\n\t#3.) Title\n\t#4.)Status");
+                                int c1 = 0;
+                            while (true)
+                            {
+                                Console.WriteLine("Select an attribute to edit:");
+                                Console.WriteLine("\n\t#1.) Order ID\n\t#2.) Customer ID\n\t#3.) Title\n\t#4.) Status\n\t#5.) Return");
+
+                                switch (c1)
+                                {
+                                    case 1:
+                                        Console.WriteLine("New order ID: ");
+                                        orders[idToEdit].Id = Convert.ToInt32(Console.ReadLine());
+                                        break;
+                                    case 2:
+                                        Console.WriteLine("New customer ID: ");
+                                        orders[idToEdit].CustomerId = Convert.ToInt32(Console.ReadLine());
+                                        break;
+                                    case 3:
+                                        Console.WriteLine("New order title: ");
+                                        orders[idToEdit].Title = Console.ReadLine();
+                                        break;
+                                    case 4:
+                                        Console.WriteLine("New order status: ");
+                                        orders[idToEdit].Status = Console.ReadLine();
+                                        break;
+                                    case 5:
+                                        Console.WriteLine("Returned!");
+                                        break;
+                                }
+
+                                break;
+                            }
                             break;
                         case 2:
                             Console.WriteLine("");
