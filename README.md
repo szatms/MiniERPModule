@@ -17,6 +17,6 @@ MAIN GOALS:
   
 OPTIONAL:
 
-  [ ] add simple Winorms GUI
+  [ ] add simple Winforms GUI
   
   [ ] implement full input-, error- and exception handling
