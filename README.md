@@ -12,5 +12,6 @@ MAIN GOALS:
   [ ] update from in-memory data storage to database usage
   
 OPTIONAL:
+
   [ ] add simple Winorms GUI
   [ ] implement full input-, error- and exception handling
