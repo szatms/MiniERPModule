@@ -12,6 +12,8 @@ MAIN GOALS:
   [ ] finish basic functionalities and system logic
   
   [ ] update from in-memory data storage to database usage
+
+  [ ] make unit tests to make sure everything is working as intended
   
 OPTIONAL:
 
