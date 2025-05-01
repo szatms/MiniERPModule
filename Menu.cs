@@ -3,20 +3,40 @@
     internal partial class Program {
         class Menu
         {
-
             public Menu() { }
-            private Product makeProd() {
+
+            private bool isValidProd(string input) { //make it so that things are idiot-proof
+                string[] prop = input.Split(';');
+                try
+                {
+                    int tmp = Convert.ToInt32(prop[0]);
+                    tmp = Convert.ToInt32(prop[2]);
+                    tmp = Convert.ToInt32(prop[3]);
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+                return true;
+            }
+
+            private void makeProd(List<Product> produtcs) { //make into a void type later! -- DONE
                 string tmpProd = "";
 
-                Console.Write("\nProduct ID: ");
-                tmpProd = string.Concat(Console.ReadLine() + ";");
-                Console.Write("\nProduct name: ");
-                tmpProd = string.Concat(tmpProd + Console.ReadLine() + ";");
-                Console.Write("\nProduct price: ");
-                tmpProd = string.Concat(tmpProd + Console.ReadLine());
+                do
+                {
+                    Console.Write("\nProduct ID: ");
+                    tmpProd = string.Concat(Console.ReadLine() + ";");
+                    Console.Write("\nProduct name: ");
+                    tmpProd = string.Concat(tmpProd + Console.ReadLine() + ";");
+                    Console.Write("\nProduct price: ");
+                    tmpProd = string.Concat(tmpProd + Console.ReadLine()) + ";";
+                    Console.Write("\nProduct quantity: ");
+                    tmpProd = string.Concat(tmpProd + Console.ReadLine());
+                } while (isValidProd(tmpProd));
 
                 string[] prop = tmpProd.Split(';');
-                return new Product(Convert.ToInt32(prop[0]), prop[1], Convert.ToInt32(prop[2]));
+                produtcs.Add(new Product(Convert.ToInt32(prop[0]), prop[1], Convert.ToInt32(prop[2]), Convert.ToInt32(prop[3])));
             }
             public void greeting()
             {
@@ -26,6 +46,22 @@
                 Console.WriteLine("\t#3.) Edit an existing order.");
                 Console.WriteLine("\t#4.) Delete an existing order.");
                 Console.WriteLine("\t#5.) EXIT.");
+            }
+
+            private bool isValidOrder(string input) {
+                string[] prop = input.Split(';');
+                if (prop.Length != 3) { return false; }
+                try
+                {
+                    int tmp = Convert.ToInt32(prop[0]);
+                    tmp = Convert.ToInt32(prop[4]);
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+
+                return true;
             }
 
             public void creation(List<Order> orders)
@@ -50,7 +86,7 @@
 
                 for (int i = 0; i < n; i++)
                 {
-                    products.Add(makeProd());
+                    makeProd(products);
                 }
                 orders.Add(new Order(tmp,products));
             }
@@ -167,7 +203,7 @@
                             Console.WriteLine("Number of products to add: ");
                             int n = Convert.ToInt32(Console.ReadLine());
                             for (int i = 0; i < n; i++)
-                                orders[idToEdit].addProd(makeProd());
+                                makeProd(orders[idToEdit].Products);
                             break;
                         case 3:
                             viewProd(orders, idToEdit);
@@ -176,6 +212,7 @@
                         case 4:
                             return;
                     }
+                    Console.Clear();
                 }
             }
 

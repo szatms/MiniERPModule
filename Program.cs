@@ -22,7 +22,24 @@
             while (true)
             {
                 menu.greeting();
-                choice = Convert.ToInt32(Console.ReadLine());
+
+                try
+                {
+                    choice = Convert.ToInt32(Console.ReadLine());
+                    if (choice < 1 || choice > 5) {
+                        Console.WriteLine("Invalid input: not a valid option!\nPress any key to try again.");
+                        Console.ReadKey();
+                        Console.Clear();
+                        continue;
+                    }
+                }
+                catch (Exception ex) {
+                    Console.WriteLine($"Invalid input: {ex.Message}!\nPress any key to try again.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    continue;
+                }
+
                 switch (choice){
                     case 1:
                         menu.creation(orders);
