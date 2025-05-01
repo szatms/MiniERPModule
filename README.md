@@ -9,7 +9,7 @@ Demo of order creation and management.
   
 MAIN GOALS:
 
-  [ ] finish basic functionalities and system logic
+  [X] finish basic functionalities and system logic
   
   [ ] update from in-memory data storage to database usage
 
