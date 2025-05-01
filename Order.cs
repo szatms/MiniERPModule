@@ -31,7 +31,7 @@ namespace miniERPModule
 
             public string Status{ get { return status; } set { status = value; } }
 
-            //public ArrayList Products{ get { return products; } set { products = value; } }
+            public List<Product> Products{ get { return products; } set { products = value; } }
             #endregion
 
             public void addProd(Product product) { this.products.Add(product); }
