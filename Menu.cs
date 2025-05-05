@@ -5,7 +5,7 @@
         {
             public Menu() { }
 
-            private bool isValidProd(string input) { //make it so that things are idiot-proof
+            private bool isValidProd(string input) {
                 string[] prop = input.Split(';');
                 try
                 {
@@ -19,10 +19,8 @@
                 }
                 return true;
             }
-
             private void makeProd(List<Product> produtcs) { //make into a void type later! -- DONE
                 string tmpProd = "";
-
                 do
                 {
                     Console.Write("\nProduct ID: ");
@@ -33,28 +31,17 @@
                     tmpProd = string.Concat(tmpProd + Console.ReadLine()) + ";";
                     Console.Write("\nProduct quantity: ");
                     tmpProd = string.Concat(tmpProd + Console.ReadLine());
-                } while (isValidProd(tmpProd));
+                } while (!isValidProd(tmpProd));
 
                 string[] prop = tmpProd.Split(';');
                 produtcs.Add(new Product(Convert.ToInt32(prop[0]), prop[1], Convert.ToInt32(prop[2]), Convert.ToInt32(prop[3])));
             }
-            public void greeting()
-            {
-                Console.WriteLine("Welcome to order processing! Select an option with a number to start operations!");
-                Console.WriteLine("\t#1.) Create a new order.");
-                Console.WriteLine("\t#2.) View an existing order.");
-                Console.WriteLine("\t#3.) Edit an existing order.");
-                Console.WriteLine("\t#4.) Delete an existing order.");
-                Console.WriteLine("\t#5.) EXIT.");
-            }
-
             private bool isValidOrder(string input) {
                 string[] prop = input.Split(';');
-                if (prop.Length != 3) { return false; }
+                if (prop.Length != 4) { return false; }
                 try
                 {
                     int tmp = Convert.ToInt32(prop[0]);
-                    tmp = Convert.ToInt32(prop[4]);
                 }
                 catch (Exception)
                 {
@@ -63,42 +50,6 @@
 
                 return true;
             }
-
-            public void creation(List<Order> orders)
-            {
-                string tmp = "";
-                int n = 0;
-                List<Product> products = new List<Product>();
-
-                Console.WriteLine("To create a new order, enter the correct data!");
-
-                Console.Write("\nOrder ID: ");
-                tmp += Console.ReadLine() + ";";
-                Console.Write("\nCustomer ID: ");
-                tmp += Console.ReadLine() + ";";
-                Console.Write("\nTitle: ");
-                tmp += Console.ReadLine() + ";";
-                Console.Write("\nStatus: ");
-                tmp += Console.ReadLine();
-                Console.Write("\nNumber of products: ");
-
-                n = Convert.ToInt32(Console.ReadLine());
-
-                for (int i = 0; i < n; i++)
-                {
-                    makeProd(products);
-                }
-                orders.Add(new Order(tmp,products));
-            }
-
-            public void listOrders(List<Order> orders) {
-                Console.WriteLine($"List of existing order IDs:");
-                foreach (Order order in orders)
-                {
-                    Console.WriteLine($"\t#{order.Id}");
-                }
-            }
-
             private void viewProd(List<Order> orders, int idToEdit) {
                 Console.WriteLine("List of products attached to order: ");
 
@@ -107,27 +58,6 @@
                     Console.WriteLine($"#{orders[idToEdit].Products[i].ToString()}");
                 }
             }
-
-            public void view(List<Order> orders)
-            {
-                if (orders.Count == 0) {
-                    Console.WriteLine("No orders to show!");
-                    return;
-                }
-
-                listOrders(orders);
-
-                Console.WriteLine("Enter the ID of the order you wish to view: ");
-                int orderId = Convert.ToInt32(Console.ReadLine());
-
-                for (int i = 0; i < orders.Count; i++) {
-                    if (orderId == orders[i].Id){
-                        Console.WriteLine($"Order details:\n{orders[i].ToString()}");
-                        viewProd(orders,i);
-                    }
-                }
-            }
-
             private void editOrder(List<Order> orders, int idToEdit) {
                 while (true)
                 {
@@ -159,7 +89,6 @@
                     }
                 }
             }
-
             private void delProd(List<Order> orders, int idToEdit) {
                 Console.WriteLine("Product by ID to be removed: ");
                 int rmP = Convert.ToInt32(Console.ReadLine());
@@ -173,13 +102,140 @@
                 }
             }
 
+            private bool isValidLen(List<Order> orders, string n) {
+                int temp;
+                try {
+                    temp = Convert.ToInt32(n);
+                }
+                catch (Exception) {
+                    return false;
+                }
+
+                if (temp == 0)
+                    return true;
+
+                foreach (Order order in orders) { 
+                    if (order.Id == temp)
+                        return true;
+                }
+
+                return false;
+            }
+            private void listOrders(List<Order> orders) {
+                Console.WriteLine($"List of existing order IDs:");
+                foreach (Order order in orders)
+                {
+                    Console.WriteLine($"\t#{order.Id}");
+                }
+            }
+
+            public void greeting()
+            {
+                Console.WriteLine("Welcome to order processing! Select an option with a number to start operations!");
+                Console.WriteLine("\t#1.) Create a new order.");
+                Console.WriteLine("\t#2.) View an existing order.");
+                Console.WriteLine("\t#3.) Edit an existing order.");
+                Console.WriteLine("\t#4.) Delete an existing order.");
+                Console.WriteLine("\t#5.) EXIT.");
+            }
+
+            public void creation(List<Order> orders)
+            {
+                string tmp = "";
+                int n = 0;
+                List<Product> products = new List<Product>();
+
+                while (true)
+                {
+                    Console.WriteLine("To create a new order, enter the correct data!");
+
+                    Console.Write("\nOrder ID: ");
+                    tmp += Console.ReadLine() + ";";
+                    Console.Write("\nCustomer ID: ");
+                    tmp += Console.ReadLine() + ";";
+                    Console.Write("\nTitle: ");
+                    tmp += Console.ReadLine() + ";";
+                    Console.Write("\nStatus: ");
+                    tmp += Console.ReadLine();
+                    Console.Write("\nNumber of different products: ");
+
+                    n = Convert.ToInt32(Console.ReadLine());
+
+                    for (int i = 0; i < n; i++)
+                    {
+                        makeProd(products);
+                    }
+
+                    if (isValidOrder(tmp)){
+                        orders.Add(new Order(tmp, products));
+                        break;
+                    }
+                    else{
+                        Console.WriteLine("Invalid order, faulty input. Try again!");
+                        tmp = "";
+                        continue;
+                    }
+                }
+
+            }
+
+            public void view(List<Order> orders)
+            {
+                if (orders.Count == 0) {
+                    Console.WriteLine("No orders to show!");
+                    return;
+                }
+
+                listOrders(orders);
+
+                int orderId;
+                string temp;
+                do
+                {
+                    Console.WriteLine("Enter the ID of the order you wish to view: ");
+                    Console.WriteLine("Press '0' to cancel!");
+                    temp = Console.ReadLine();
+                    if (!isValidLen(orders, temp))
+                        Console.WriteLine("Invalid ID, try again:");
+                } while (!isValidLen(orders, temp));
+                orderId = Convert.ToInt32(temp);
+
+                if (orderId == 0)
+                {
+                    Console.WriteLine("Cancelled.");
+                    return;
+                }
+
+
+                for (int i = 0; i < orders.Count; i++) {
+                    if (orderId == orders[i].Id){
+                        Console.WriteLine($"Order details:\n{orders[i].ToString()}");
+                        viewProd(orders,i);
+                    }
+                }
+            }
             public void edit(List<Order> orders)
             {
                 listOrders(orders);
 
                 int choice = 0;
-                Console.WriteLine("Select an order to edit by order ID: ");
-                int idToEdit = Convert.ToInt32(Console.ReadLine());
+                string temp;
+                do
+                {
+                    Console.WriteLine("Select an order to edit by order ID: ");
+                    Console.WriteLine("Press '0' to cancel.");
+                    temp = Console.ReadLine();
+
+                    if (!isValidLen(orders, temp))
+                        Console.WriteLine("Invalid ID, try again:");
+                } while (!isValidLen(orders, temp));
+                int idToEdit = Convert.ToInt32(temp);
+
+                if (idToEdit == 0)
+                {
+                    Console.WriteLine("Cancelled.");
+                    return;
+                }
 
                 for (int i = 0; i < orders.Count; i++)
                 {
@@ -218,8 +274,24 @@
 
             public void deletion(List<Order> orders)
             {
-                Console.WriteLine("Enter the ID of the order you wish to delete: ");
-                int orderId = Convert.ToInt32(Console.ReadLine());
+                listOrders(orders);
+                int orderId;
+                string temp;
+                do
+                {
+                    Console.WriteLine("Enter the ID of the order you wish to delete: ");
+                    Console.WriteLine("Press '0' to cancel!");
+                    temp = Console.ReadLine();
+                    if (!isValidLen(orders, temp))
+                        Console.WriteLine("Invalid ID, try again:");
+                } while (!isValidLen(orders, temp));
+                orderId = Convert.ToInt32(temp);
+
+                if (orderId == 0)
+                {
+                    Console.WriteLine("Cancelled.");
+                    return;
+                }
 
                 for (int i = 0; i < orders.Count; i++) {
                     if (orderId == orders[i].Id) { 

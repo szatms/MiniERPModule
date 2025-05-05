@@ -14,6 +14,10 @@
             Console.Clear();
             #endregion
 
+            //NOTE TO VIEWER: #Proper input handling will be implemented in the future or will be demonstrated in an other poject 
+            //                #Patchwork error and crash prevention is in full effect.
+
+
             #region Demo
             Menu menu = new Menu();
             int choice = 0;
