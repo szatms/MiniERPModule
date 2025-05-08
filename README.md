@@ -19,4 +19,5 @@ OPTIONAL:
 
   [ ] add simple Winforms GUI
   
-  [ ] implement full input-, error- and exception handling
+  [\] implement full input-, error- and exception handling
+        #Temporary error and input input handling added
